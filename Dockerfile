@@ -11,11 +11,17 @@ WORKDIR /app
 # Copy files
 COPY . .
 
-# Install Python dependencies (including Flask for HTTP ping)
+# Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt flask
 
-# Expose the port (Render usually expects 10000)
+# Create non-root user and give permission
+RUN useradd -m appuser && chown -R appuser:appuser /app
+
+# Switch to non-root user
+USER appuser
+
+# Expose port
 EXPOSE 10000
 
-# Start Flask ping server + your bot in parallel using a custom script
+# Start bot
 CMD ["bash", "start.sh"]
