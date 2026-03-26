@@ -21,7 +21,7 @@ try:
     BOT_TOKEN = config("BOT_TOKEN")
     DEV = config("DEV", default=5868426717, cast=int)
     OWNER = config("OWNER" , "5868426717")
-    ffmpegcode = ["-preset veryfast -c:v libx265 -b:a 64k -crf 38 -map 0 -c:s copy"]
+    ffmpegcode = ["-preset veryfast -c:v libx264 -b:a 64k -crf 38 -map 0 -c:s copy"]
     THUMB = config("THUMBNAIL" , "https://graph.org/file/1cc8d7082dc910c0ccee8.jpg")
 except Exception as e:
     LOGS.info("Environment vars Missing")
