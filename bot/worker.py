@@ -1,3 +1,19 @@
+#        es = dt.now()
+        kk = dl.split("/")[-1]
+        
+        # 1. Pipe (|) aur spaces ko hata kar name ko safe banayein
+        safe_name = kk.replace("|", "_").replace(" ", "_")
+        
+        # 2. Safely check karein ki extension hai ya nahi, aur .mkv lagayein
+        if "." in safe_name:
+            bb = safe_name.rsplit(".", 1)[0] + ".mkv"
+        else:
+            bb = safe_name + ".mkv"
+            
+        newFile = dl.replace(f"downloads/", "").replace(f"_", " ")
+        rr = "encode"
+        out = f"{rr}/{bb}"
+
 #    This file is part of the CompressorQueue distribution.
 #    Copyright (c) 2021 Danish_00
 #    Script Improved by Anshusharma
@@ -51,10 +67,13 @@ async def dl_link(event):
         return
     es = dt.now()
     kk = dl.split("/")[-1]
-    aa = kk.split(".")[-1]
+    safe_name = kk.replace("|", "_").replace(" ", "_")
+    if "." in safe_name:
+            bb = safe_name.rsplit(".", 1)[0] + ".mkv"
+    else:
+            bb = safe_name + ".mkv"
     newFile = dl.replace(f"downloads/", "").replace(f"_", " ")
     rr = "encode"
-    bb = kk.replace(f".{aa}", ".mkv")
     out = f"{rr}/{bb}"
     thum = "thumb.jpg"
     dtime = ts(int((es - s).seconds) * 1000)
