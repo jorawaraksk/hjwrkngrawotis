@@ -190,9 +190,11 @@ async def encod(event):
             return os.remove(dl)
         es = dt.now()
         kk = dl.split("/")[-1]
-        aa = kk.split(".")[-1]
-        rr = f"encode"
-        bb = kk.replace(f".{aa}", ".mkv")
+        safe_name = kk.replace("|", "_").replace(" ", "_")
+        if "." in safe_name:
+            bb = safe_name.rsplit(".", 1)[0] + ".mkv"
+        else:
+            bb = safe_name + ".mkv"
         newFile = dl.replace(f"downloads/", "").replace(f"_", " ")
         out = f"{rr}/{bb}"
         thum = "thumb.jpg"
